@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(90deg, #ede905 0%, rgb(190, 33, 22) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    border: none;
+    outline: none;
+    background: palegreen;
+    color: black;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    margin: 1rem;
+    padding: 0.8rem 3rem;
+    box-shadow: 5px 5px 0px palegreen;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 1;
+    transition: .5s;
+}
+
+&.active{
+    transform: translate(5%, 5%);
+    box-shadow: 0px 0px 0px palegreen;
+}
+
+.notification{
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    position: relative;
+    color: transparent;
+
+    &::after{
+        min-width: 15px;
+        min-height: 15px;
+        content:attr(data-count);
+        color:white;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        background-color: gold;
+        border-radius: 50%;
+        position: absolute;
+        top: -4px;
+        right: 7px;
+        transition: 0.3s;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    &::before{
+        content:'\f0f3';
+        font-family: 'Font Awesome 5 Free';
+        display: block;
+        color: black;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    &.count::after{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &.notify::before{
+        animation: belltambol 1s ease-in-out;
+    }
+}
+
+@keyframes belltambol {
+    0%{
+        transform: translate(0,0) rotate(180deg);
+    }
+
+    25%{
+        transform: scale(2) translate(0,-150px);
+    }
+
+    75%{
+        transform: scale(1.1,1.1) translate(0,200px);
+    }
+
+    100%{
+        transform: translate(0,0) rotate(360deg);
+    }
+}
